@@ -6,5 +6,5 @@ Trenitalia uploads their schedule and prices somewhere around 3 months before th
 
 ## Technology
 
-Nextjs
-Deployed on Vercel
+- Nextjs
+- Deployed on Vercel
