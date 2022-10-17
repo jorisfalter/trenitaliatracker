@@ -1,3 +1,6 @@
+// this was a test function to connect to my notion database. 
+// it's obsolete now
+
 require('dotenv').config();
 const { Client} = require("@notionhq/client")
 

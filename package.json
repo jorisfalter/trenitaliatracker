@@ -6,16 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "db": "node notionConnection.js",
-    "db2": "node notionConnection2.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.1",
     "dotenv": "^16.0.3",
     "next": "12.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.37.0"
   },
   "devDependencies": {
     "eslint": "8.25.0",

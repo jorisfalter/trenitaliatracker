@@ -1,9 +1,13 @@
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import Datepicker from './datepicker.js'
+import { useForm, Controller } from "react-hook-form";
 
 
 export default function Form() {
-    return (
+  const { handleSubmit, control } = useForm();  
+  
+  return (
       <div className="container">
         <h1 className={styles.title}>
           Form{' '}
@@ -24,6 +28,24 @@ export default function Form() {
     
           <label htmlFor="last">Last Name</label>
           <input type="text" id="last" name="last" required />
+
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" required />
+
+          <label htmlFor="last">Date</label>
+          <Datepicker />
+          <input type="text" id="last" name="last" required />
+
+          <Controller
+                name='date-input'
+                control={control}
+                render={({ onChange, value }) => (
+                    <Datepicker
+                        selected={value}
+                        onChange={onChange}
+                    />
+                )}
+            />
     
           <button type="submit">Submit</button>
         </form>
