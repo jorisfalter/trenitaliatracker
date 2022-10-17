@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db": "node notionConnection.js"
+    "db": "node notionConnection.js",
+    "db2": "node notionConnection2.js"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.1",
