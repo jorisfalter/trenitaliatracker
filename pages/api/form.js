@@ -5,23 +5,18 @@ const notion = new Client({auth: process.env.NOTION_API_KEY})
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function handler(req, res) {
+    
     // Get data submitted in request's body.
     const body = req.body
   
-    // // Optional logging to see the responses
-    // // in the command line where next.js app is running.
-    // console.log('body: ', body)
-  
     // Guard clause checks for first and last name,
     // and returns early if they are not found
-    if (!body.first || !body.last) {
-      // Sends a HTTP bad request error code
-      return res.status(400).json({ data: 'First or last name not found' })
-    }
+    // if (!body.first || !body.last) {
+    //   // Sends a HTTP bad request error code
+    //   return res.status(400).json({ data: 'First or last name not found' })
+    // }
   
-
-
-    async function addToDatabase(databaseId, username, name, status, date) {
+    async function addToDatabase(databaseId, DBID, firstname, emailentry, status, dateofentry, dateoftravel) {
       try {
           const response = await notion.pages.create({
               parent: {
@@ -34,29 +29,46 @@ export default function handler(req, res) {
                       {
                           type: 'text',
                           text: {
-                              content: username,
+                              content: DBID,
                           },
                       },
                       ],
                   },
-                  'Name' : {
-                          type: 'rich_text',
-                          rich_text: [
-                          {
-                              type: 'text',
-                              text: {
-                                  content: name,
-                              },
-                          }
-                          ],
+                  'FirstName' : {
+                      type: 'rich_text',
+                      rich_text: [
+                      {
+                          type: 'text',
+                          text: {
+                              content: firstname,
+                          },
+                      }
+                      ],
+                  },
+                  'Email': { 
+                      type: 'email',
+                      email: emailentry
+                      // email: [
+                      //   {
+                      //     type: 'email',
+                      //     text: {
+                      //       content: email,
+                      //     },
+                      //   }
+                      // ],
+                      // rich_text: email
                   },
                   'Status': {
                       type: 'checkbox',
                       checkbox: status
                   },
-                  'Date': { // Date is formatted as YYYY-MM-DD or null
+                  'DateOfEntry': { // Date is formatted as YYYY-MM-DD or null
                       type: 'date',
-                      date: date
+                      date: dateofentry
+                  },
+                  'DateOfTravel': { // Date is formatted as YYYY-MM-DD or null
+                      type: 'date',
+                      date: dateoftravel
                   },
               }    
           });
@@ -68,9 +80,11 @@ export default function handler(req, res) {
   
     // Found the name.
     // Sends a HTTP success code
-    res.status(200).json({ data: `${body.first} ${body.last}` })
+    res.status(200).json({ data: `${body.first} ${body.email}` })
 
-    addToDatabase(databaseId, 'test123', body.first, false, null);
+    let rightNow = (new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDay());
+    console.log(rightNow)
 
-
+    addToDatabase(databaseId, 'test123', body.first, body.email, false, null, null) //body.dateinput);
+    // 
   }
