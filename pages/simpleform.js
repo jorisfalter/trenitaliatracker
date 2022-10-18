@@ -26,13 +26,9 @@ export default function Form() {
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" required />
 
-          {/* <label htmlFor="last">Date</label>
-          <Datepicker />
-          <input type="text" id="last" name="last" required /> */}
-
-          <label htmlFor="date">Date of intended travel</label>
-          <Controller
-                name='dateinput'
+          <label htmlFor="datelabel">Date of intended travel</label>
+          {/* <Controller
+                name="datename"
                 control={control}
                 render={({ onChange, value }) => (
                     <Datepicker
@@ -40,8 +36,8 @@ export default function Form() {
                         onChange={onChange}
                     />
                 )}
-            />
-    
+            /> */}
+            <input type="date" id="dateid" name="datename" required/>
           <button type="submit">Submit</button>
         </form>
       </div>

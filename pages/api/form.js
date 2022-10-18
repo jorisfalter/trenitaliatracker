@@ -8,6 +8,7 @@ export default function handler(req, res) {
     
     // Get data submitted in request's body.
     const body = req.body
+    console.log(body)
   
     // Guard clause checks for first and last name,
     // and returns early if they are not found
@@ -16,7 +17,7 @@ export default function handler(req, res) {
     //   return res.status(400).json({ data: 'First or last name not found' })
     // }
   
-    async function addToDatabase(databaseId, DBID, firstname, emailentry, status, dateofentry, dateoftravel) {
+    async function addToDatabase(databaseId, DBID, firstname, emailentry, status, dateoftravel) {
       try {
           const response = await notion.pages.create({
               parent: {
@@ -62,17 +63,13 @@ export default function handler(req, res) {
                       type: 'checkbox',
                       checkbox: status
                   },
-                  'DateOfEntry': { // Date is formatted as YYYY-MM-DD or null
-                      type: 'date',
-                      date: dateofentry
-                  },
                   'DateOfTravel': { // Date is formatted as YYYY-MM-DD or null
                       type: 'date',
-                      date: dateoftravel
+                      date: {start: dateoftravel}
                   },
               }    
           });
-          console.log(response);
+          // console.log(response);
       } catch (error) {
           console.error(error.body);
       }
@@ -82,9 +79,8 @@ export default function handler(req, res) {
     // Sends a HTTP success code
     res.status(200).json({ data: `${body.first} ${body.email}` })
 
-    let rightNow = (new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDay());
-    console.log(rightNow)
 
-    addToDatabase(databaseId, 'test123', body.first, body.email, false, null, null) //body.dateinput);
+
+    addToDatabase(databaseId, 'test123', body.first, body.email, false, body.datename);
     // 
   }
