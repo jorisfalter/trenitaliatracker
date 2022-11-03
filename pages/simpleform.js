@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Datepicker from './datepicker.js'
 import { useForm, Controller } from "react-hook-form";
 
+// this is the html front for the form
+
 
 export default function Form() {
   const { handleSubmit, control } = useForm();  

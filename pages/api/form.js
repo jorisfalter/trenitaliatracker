@@ -4,6 +4,9 @@ const { Client} = require("@notionhq/client")
 const notion = new Client({auth: process.env.NOTION_API_KEY})
 const databaseId = process.env.NOTION_DATABASE_ID;
 
+
+// this puts the form information in the Notion DB
+
 export default function handler(req, res) {
     
     // Get data submitted in request's body.

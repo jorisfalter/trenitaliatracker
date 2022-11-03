@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 
-
+// This is the homepage
+// to be deleted as I want to land straight on the form
 
 export default function Home() {
   return (
