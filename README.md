@@ -10,6 +10,10 @@ interesting tech
 
 ## Archived project
 
+why archived > it seems the problem only exists on one specific line
+
+## Intro
+
 This is a project to warn users when the tickets for their desired dates are available on trenitalia
 
 ## Problem
